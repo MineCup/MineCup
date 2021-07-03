@@ -18,6 +18,9 @@ class MyClient(Client):
     async def on_message(self, message):
         if message.author == self.user:
             return
+        
+        if "tradeoffer" in message.content and "https://steamcommunity.com" not in message.content:
+            await message.author.ban(reason="скам обмен вещей в стим.", delete_message_days=1)
 
         if message.channel == channel["reactions"]:
             await message.add_reaction(":upp:858281420820840458")
