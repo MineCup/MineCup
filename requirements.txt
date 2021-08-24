@@ -1,1 +1,6 @@
 discord.py
+memory_profiler
+oauth2client
+httplib2
+apiclient
+google-api-python-client
