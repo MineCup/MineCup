@@ -28,7 +28,7 @@ def start(services):
             while True:
                 print(f"MiB: {memory_usage()[0]}")
                 await rating(services)
-                await sleep(10800)
+                await sleep(60)
 
         async def on_message(self, message):
             if message.author == self.user:
