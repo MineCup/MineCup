@@ -48,6 +48,9 @@ async def rating(services):
         teamDict.update(newDict)
 
     for match in getMatches["values"]:
+        if not match:
+            continue
+
         matchTeams = {"winner": None,
                       "loser": None}
 
@@ -85,7 +88,8 @@ async def rating(services):
         name = teamRating["values"][team][0]
         if name == "":
             continue
-        teamRating["values"][team] = [teamDict[name]["Name"], f"=E{team + 2}", teamDict[name]["Rating"], teamDict[name]["Games"]]
+        teamRating["values"][team] = [teamDict[name]["Name"], f"=E{team + 2}", teamDict[name]["Rating"],
+                                      teamDict[name]["Games"]]
 
     services["rating"].spreadsheets().values().batchUpdate(spreadsheetId=sheet,
                                                            body={
@@ -113,4 +117,4 @@ async def rating(services):
                                                                                 [""] * len(getMatches["values"]),
                                                                                 [""] * len(getMatches["values"])]}]}
                                                            ).execute()
-    print("Рейтинг просчитан. Иду на 3 часовой сон.")
+    print("Рейтинг просчитан.")
