@@ -34,21 +34,45 @@ def start(services):
             if message.author == self.user:
                 return
 
-            if message.channel == channel["reactions"]:
-                await message.add_reaction(":upp:858281420820840458")
-                await message.add_reaction(":down:858281431108288542")
+            if message.guild:
 
-            if message.content.startswith("*add") and message.channel == channel["map_pool"]:
-                new_map = message.content[5:]
-                mes = await channel["map_pool"].fetch_message(messages["map_pool"])
-                await mes.edit(content=f"{mes.content}\n{new_map}")
-                await message.add_reaction(":TickYes:858281449677520927")
+                if "https://" in message.content:
+                    checkWords = ["steam", "discord", "free", "gift", "giving", "mont"]
+                    checkWordsRus = ["стим", "нитро", "разд", "месяц"]
+                    checkWordsCount = 0
+                    checkWordsRusCount = 0
+                    for word in checkWords:
+                        if word in message.content.lower():
+                            checkWordsCount += 1
+                    for word in checkWordsRus:
+                        if word in message.content.lower():
+                            checkWordsRusCount += 1
+                    if checkWordsRusCount >= len(checkWordsRus) / 2:
+                        await message.delete()
+                        return
+                    
+                    if checkWordsCount >= len(checkWords) / 2:
+                        await message.delete()
+                        return
+                    if checkWordsRusCount + checkWordsCount >= len(checkWordsRus) / 2 + len(checkWords) / 2:
+                        await message.delete()
+                        return
 
-            if message.content.startswith("*rem") and message.channel == channel["map_pool"]:
-                del_map = message.content[5:]
-                mes = await channel["map_pool"].fetch_message(messages["map_pool"])
-                await mes.edit(content=mes.content.replace(f"\n{del_map}", ""))
-                await message.add_reaction(":TickYes:858281449677520927")
+                if message.channel == channel["reactions"]:
+                    await message.add_reaction(":upp:858281420820840458")
+                    await message.add_reaction(":down:858281431108288542")
+
+                if message.content.startswith("*add") and message.channel == channel["map_pool"]:
+                    new_map = message.content[5:]
+                    mes = await channel["map_pool"].fetch_message(messages["map_pool"])
+                    await mes.edit(content=f"{mes.content}\n{new_map}")
+                    await message.add_reaction(":TickYes:858281449677520927")
+
+                if message.content.startswith("*rem") and message.channel == channel["map_pool"]:
+                    del_map = message.content[5:]
+                    mes = await channel["map_pool"].fetch_message(messages["map_pool"])
+                    await mes.edit(content=mes.content.replace(f"\n{del_map}", ""))
+                    await message.add_reaction(":TickYes:858281449677520927")
 
     client = MyClient()
     client.run(token["bot"])
