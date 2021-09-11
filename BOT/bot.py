@@ -37,25 +37,28 @@ def start(services):
             if message.guild:
 
                 if "https://" in message.content:
-                    checkWords = ["steam", "discord", "free", "gift", "giving", "mont"]
-                    checkWordsRus = ["стим", "нитро", "разд", "месяц"]
-                    checkWordsCount = 0
-                    checkWordsRusCount = 0
-                    for word in checkWords:
-                        if word in message.content.lower():
-                            checkWordsCount += 1
-                    for word in checkWordsRus:
-                        if word in message.content.lower():
-                            checkWordsRusCount += 1
-                    if checkWordsRusCount >= len(checkWordsRus) / 2:
-                        await message.delete()
-                        return
-                    
-                    if checkWordsCount >= len(checkWords) / 2:
-                        await message.delete()
-                        return
-                    if checkWordsRusCount + checkWordsCount >= len(checkWordsRus) / 2 + len(checkWords) / 2:
-                        await message.delete()
+                    try:
+                        checkWords = ["steam", "discord", "free", "gift", "giving", "mont"]
+                        checkWordsRus = ["стим", "нитро", "разд", "месяц"]
+                        checkWordsCount = 0
+                        checkWordsRusCount = 0
+                        for word in checkWords:
+                            if word in message.content.lower():
+                                checkWordsCount += 1
+                        for word in checkWordsRus:
+                            if word in message.content.lower():
+                                checkWordsRusCount += 1
+                        if checkWordsRusCount >= len(checkWordsRus) / 2:
+                            await message.delete()
+                            return
+    
+                        if checkWordsCount >= len(checkWords) / 2:
+                            await message.delete()
+                            return
+                        if checkWordsRusCount + checkWordsCount >= len(checkWordsRus) / 2 + len(checkWords) / 2:
+                            await message.delete()
+                            return
+                    except:
                         return
 
                 if message.channel == channel["reactions"]:
