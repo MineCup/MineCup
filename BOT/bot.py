@@ -36,7 +36,7 @@ def start(services):
 
             if message.guild:
 
-                if "https://" in message.content:
+                if "http://" in message.content or "https://" in message.content:
                     try:
                         checkWords = ["steam", "discord", "free", "gift", "giving", "mont", "airdrop"]
                         checkWordsRus = ["стим", "нитро", "разд", "месяц"]
