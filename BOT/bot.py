@@ -38,7 +38,7 @@ def start(services):
 
                 if "http://" in message.content or "https://" in message.content:
                     try:
-                        checkWords = ["steam", "discord", "free", "gift", "giving", "mont", "airdrop"]
+                        checkWords = ["steam", "discord", "free", "gift", "giving", "mont"]
                         checkWordsRus = ["стим", "нитро", "разд", "месяц"]
                         checkWordsCount = 0
                         checkWordsRusCount = 0
