@@ -48,14 +48,14 @@ def start(services):
                         for word in checkWordsRus:
                             if word in message.content.lower():
                                 checkWordsRusCount += 1
-                        if checkWordsRusCount >= len(checkWordsRus) / 2:
+                        if checkWordsRusCount >= round(len(checkWordsRus) / 2):
                             await message.delete()
                             return
     
-                        if checkWordsCount >= len(checkWords) / 2:
+                        if checkWordsCount >= round(len(checkWords) / 2):
                             await message.delete()
                             return
-                        if checkWordsRusCount + checkWordsCount >= len(checkWordsRus) / 2 + len(checkWords) / 2:
+                        if checkWordsRusCount + checkWordsCount >= round(len(checkWordsRus) / 2) + round(len(checkWords) / 2):
                             await message.delete()
                             return
                     except:
