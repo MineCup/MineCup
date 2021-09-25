@@ -48,17 +48,22 @@ def start(services):
                         for word in checkWordsRus:
                             if word in message.content.lower():
                                 checkWordsRusCount += 1
-                        if checkWordsRusCount > 2:
+                        if checkWordsRusCount >= 2:
                             await message.delete()
                             return
     
-                        if checkWordsCount > 3:
+                        if checkWordsCount >= 3:
                             await message.delete()
                             return
-                        if checkWordsRusCount + checkWordsCount > 4:
+                        if checkWordsRusCount + checkWordsCount >= 4:
                             await message.delete()
                             return
                         
+                        content = message.content.split("http")
+                        if "nitro" in content[1] and "everyone" in content[0]:
+                            await message.delete()
+                            return
+                                 
                     except:
                         return
 
