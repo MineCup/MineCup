@@ -38,7 +38,7 @@ def start(services):
 
                 if "http://" in message.content or "https://" in message.content:
                     try:
-                        checkWords = ["steam", "discord", "free", "gift", "giving", "mont"]
+                        checkWords = ["steam", "discord", "air", "gift", "giv", "mont", "new", "end"]
                         checkWordsRus = ["стим", "нитро", "разд", "месяц"]
                         checkWordsCount = 0
                         checkWordsRusCount = 0
@@ -48,16 +48,17 @@ def start(services):
                         for word in checkWordsRus:
                             if word in message.content.lower():
                                 checkWordsRusCount += 1
-                        if checkWordsRusCount >= round(len(checkWordsRus) / 2):
+                        if checkWordsRusCount >= 2:
                             await message.delete()
                             return
     
-                        if checkWordsCount >= round(len(checkWords) / 2):
+                        if checkWordsCount >= 3:
                             await message.delete()
                             return
-                        if checkWordsRusCount + checkWordsCount >= round(len(checkWordsRus) / 2) + round(len(checkWords) / 2):
+                        if checkWordsRusCount + checkWordsCount >= 4:
                             await message.delete()
                             return
+                        
                     except:
                         return
 
