@@ -88,7 +88,7 @@ def start(services):
                     await mes.edit(content=mes.content.replace(f"\n{del_map}", ""))
                     mes2 = await channel["map_pool"].fetch_message(messages["map_pool"])
                     if mes2.content == mes.content:
-                        await mes2.edit(content=mes2.content.replace(f"{del_map}\n"))
+                        await mes2.edit(content=mes2.content.replace(f"{del_map}\n", ""))
                     await message.add_reaction(":TickYes:858281449677520927")
 
     client = MyClient()
