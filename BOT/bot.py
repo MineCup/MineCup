@@ -76,7 +76,11 @@ def start(services):
                     mes = await channel["map_pool"].fetch_message(messages["map_pool"])
                     await mes.edit(content=f"{mes.content}\n{new_map}")
                     await message.add_reaction(":TickYes:858281449677520927")
-
+                
+                if message.content == "*repair" and message.author.id == 630858769630232586:
+                    mes = await channel["map_pool"].fetch_message(messages["map_pool"])
+                    await mes.edit("\n" + mes.content)
+           
                 if message.content.startswith("*rem") and message.channel == channel["map_pool"]:
                     del_map = message.content[5:]
                     mes = await channel["map_pool"].fetch_message(messages["map_pool"])
