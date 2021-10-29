@@ -79,16 +79,16 @@ def start(services):
                 
                 if message.content == "*repair" and message.author.id == 630858769630232586:
                     mes = await channel["map_pool"].fetch_message(messages["map_pool"])
-                    await mes.edit(content="\n" + mes.content)
+                    await mes.edit(content="" + mes.content)
            
                 if message.content.startswith("*rem") and message.channel == channel["map_pool"]:
                     del_map = message.content[5:]
                     mes = await channel["map_pool"].fetch_message(messages["map_pool"])
                     print(mes.content)
-                    try:
-                        await mes.edit(content=mes.content.replace(f"\n{del_map}", ""))
-                    except:
-                        await mes.edit(content=mes.content.replace(f"{del_map}", ""))    
+                    await mes.edit(content=mes.content.replace(f"\n{del_map}", ""))
+                    mes2 = await channel["map_pool"].fetch_message(messages["map_pool"])
+                    if mes2.content == mes.content:
+                        await mes2.edit(content=mes2.content.replace(f"{del_map}\n"))
                     await message.add_reaction(":TickYes:858281449677520927")
 
     client = MyClient()
