@@ -80,6 +80,7 @@ def start(services):
                 if message.content.startswith("*rem") and message.channel == channel["map_pool"]:
                     del_map = message.content[5:]
                     mes = await channel["map_pool"].fetch_message(messages["map_pool"])
+                    print(mes.content)
                     try:
                         await mes.edit(content=mes.content.replace(f"\n{del_map}", ""))
                     except:
